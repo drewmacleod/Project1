@@ -38,8 +38,10 @@ def getData(file):
 def mySort(data,col):
 # Sort based on key/column
 #Input: list of dictionaries and col (key) to sort on
+	# sorts list of dictionaries based on key using lambda
 	sorted_data = sorted(data, key=lambda k: k[col])
 #Output: Return the first item in the sorted list as a string of just: firstName lastName
+	# accesses first element and returns first and last name from dictionary
 	name = sorted_data[0]['First'] + " " + sorted_data[0]['Last']
 	return name
 
@@ -112,9 +114,12 @@ def findAge(a):
 # age in years.
 	num_students = len(a)
 	age_sum = 0
-	current_year = 2018
-	current_month = 10
-	current_day = 8
+	today = date.today()
+	today = today.strftime('%m-%d-%Y')
+	today_list = today.split('-')
+	current_year = int(today_list[2])
+	current_month = int(today_list[0])
+	current_day = int(today_list[1])
 	for student in a:
 		dob = student['DOB']
 		dob = dob.split('/')
@@ -150,7 +155,7 @@ def main():
 	total = 0
 	print("Read in Test data and store as a list of dictionaries")
 	data = getData('P1DataA.csv')
-	data2 = getData('P1DataB.csv')
+	data2 = getData('P1DataB2.csv')
 	total += test(type(data),type([]),50)
 
 	print()
